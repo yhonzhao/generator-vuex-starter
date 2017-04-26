@@ -16,6 +16,76 @@ Then generate your new project:
 yo vuex-starter
 ```
 
+## Use step
+1: add type and state
+```bash
+cd $prodir/src/store
+```
+```javascript
+export const USER_NAME = "user_name";
+
+const commonState = {
+  status:{failure:true},
+  res:{}
+}
+
+const state = {
+  [USER_NAME]:commonState,
+}
+
+export default state
+```
+2: add actions
+```javascript
+import {createActions} from '../utils/index'
+import * as UserType from './userType'
+
+function userNameGet() {
+  return {
+    type: UserType.USER_NAME,
+    payload: {
+      endpoint: '/v1/isConnect',
+      options: {
+        method: 'GET'
+      }
+    }
+  }
+}
+
+export const user_name = createActions(userNameGet);
+```
+3: add mutation
+```javascript
+import * as UserType from './userType'
+import {createMutations} from '../utils/index'
+
+const mutations = {
+  [UserType.USER_NAME]:createMutations(UserType.USER_NAME)
+}
+
+export default mutations
+```
+4: use in vue-profile
+```javascript
+import {user_name} from '../store/actions'
+import {USER_NAME} from '../store/userType'
+
+export default {
+  name: 'hello',
+  data() {
+      return{
+        status:this.$store.state[USER_NAME],
+      }
+    },
+    methods: {
+      handleSelect() {
+        user_name(this.$store);
+      }
+    }
+}
+```
+## Bug submit
+https://github.com/yhonzhao/generator-vuex-starter/issues
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.

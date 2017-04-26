@@ -1,9 +1,9 @@
 {
   "name": "generator-vuex-starter",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "a vuex starter",
   "homepage": "",
-  "private": true,
+  "private": false,
   "author": {
     "name": "Yhon",
     "email": "760244249@qq.com",

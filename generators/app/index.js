@@ -74,6 +74,10 @@ module.exports = class extends Generator{
       this.destinationPath('index.html')
     );
     this.fs.copy(
+      this.templatePath('.babelrc'),
+      this.destinationPath('.babelrc')
+    );
+    this.fs.copy(
       this.templatePath('README.md'),
       this.destinationPath('README.md')
     );
