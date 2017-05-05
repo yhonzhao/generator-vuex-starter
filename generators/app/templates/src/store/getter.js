@@ -1,13 +1,13 @@
 /**
  * Created by yhon on 2017/4/10.
  */
-import * as UserType from './userType'
+import * as stateType from './stateType'
 import {createGetter} from '../utils/index'
 
-export const getUserName = "get_"+UserType.USER_NAME;
+export const getUserName = "get_"+stateType.USER_NAME;
 
 const getters = {
-  [getUserName]:createGetter(UserType.USER_NAME)
+  [getUserName]:createGetter(stateType.USER_NAME)
 }
 
 export default getters

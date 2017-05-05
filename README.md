@@ -17,7 +17,7 @@ yo vuex-starter
 ```
 
 ## Use step
-1: add type and state
+1: create type and state
 ```bash
 cd $prodir/src/store
 ```
@@ -38,11 +38,11 @@ export default state
 2: add actions
 ```javascript
 import {createActions} from '../utils/index'
-import * as UserType from './userType'
+import * as stateType from './stateType'
 
 function userNameGet() {
   return {
-    type: UserType.USER_NAME,
+    type: stateType.USER_NAME,
     payload: {
       endpoint: '/v1/isConnect',
       options: {
@@ -56,19 +56,19 @@ export const user_name = createActions(userNameGet);
 ```
 3: add mutation
 ```javascript
-import * as UserType from './userType'
+import * as stateType from './stateType'
 import {createMutations} from '../utils/index'
 
 const mutations = {
-  [UserType.USER_NAME]:createMutations(UserType.USER_NAME)
+  [stateType.USER_NAME]:createMutations(stateType.USER_NAME)
 }
 
 export default mutations
 ```
-4: use in vue-profile
+4: use in vue-file
 ```javascript
-import {user_name} from '../store/actions'
-import {USER_NAME} from '../store/userType'
+import {user_name} from '../store/actions/actions'
+import {USER_NAME} from '../store/stateType'
 
 export default {
   name: 'hello',
@@ -77,15 +77,24 @@ export default {
         status:this.$store.state[USER_NAME],
       }
     },
+    computed:{
+      if(this.$store.state[USER_NAME].status.success)
+        return this.$store.state[USER_NAME].res;
+      else 
+        return {};
+    },
     methods: {
       handleSelect() {
-        user_name(this.$store);
+        user_name(this.$store); //dispatch actions
       }
     }
 }
 ```
+
 ## Bug submit
 https://github.com/yhonzhao/generator-vuex-starter/issues
+
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.

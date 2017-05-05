@@ -16,7 +16,6 @@
 <script>
 import {user_name} from '../store/actions'
 import {USER_NAME} from '../store/userType'
-import { mapActions } from 'vuex'
 
 export default {
   name: 'hello',
